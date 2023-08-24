@@ -14,4 +14,7 @@ module.exports = {
     //   umdNamedDefine: true,
     // },
   },
+  optimization: {
+    minimize: false, // 打包是否压缩代码
+  },
 }
