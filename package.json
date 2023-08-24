@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c --environment NODE_ENV:production",
     "build-webpack": "webpack"
   },
   "keywords": [],
