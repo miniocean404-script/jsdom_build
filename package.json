@@ -1,0 +1,24 @@
+{
+  "name": "jsdom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c --environment NODE_ENV:production",
+    "build-webpack": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "cookie": "^0.5.0",
+    "jsdom": "^22.1.0",
+    "jsdom-browser.screen": "^0.2.2",
+    "rollup-plugin-polyfill-node": "^0.12.0",
+    "xhr2": "^0.2.1"
+  }
+}
