@@ -1,9 +1,9 @@
-const { initBrowserEnv } = require("../dom/jsdom")
-const getEncrypt = require("./encrypt")
+const { initBrowserEnv } = require('../dom/jsdom')
+const getEncrypt = require('./encrypt/encrypt')
 
 async function sign(fullUrl, cookie, ua) {
-  const url = "https://market.waimai.meituan.com"
-  const referrer = "https://passport.meituan.com/"
+  const url = 'https://market.waimai.meituan.com'
+  const referrer = 'https://passport.meituan.com/'
 
   const window = initBrowserEnv({
     url,
@@ -15,11 +15,11 @@ async function sign(fullUrl, cookie, ua) {
   getEncrypt(window)
 
   const data = {
-    cType: "mti",
+    cType: 'mti',
     fpPlatform: 3,
-    wxOpenId: "",
-    appVersion: "",
-    mtFingerprint: "", // 加密完成后赋值
+    wxOpenId: '',
+    appVersion: '',
+    mtFingerprint: '', // 加密完成后赋值
   }
 
   // 执行 加密 文件的加密函数
@@ -27,9 +27,9 @@ async function sign(fullUrl, cookie, ua) {
 
   return await window.H5guard.sign({
     url: fullUrl,
-    method: "POST",
+    method: 'POST',
     headers: {
-      "content-type": "application/json",
+      'content-type': 'application/json',
       cookie,
       data,
     },

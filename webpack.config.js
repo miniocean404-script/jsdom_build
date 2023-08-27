@@ -14,6 +14,6 @@ module.exports = {
     },
   },
   optimization: {
-    minimize: false, // 打包是否压缩代码
+    minimize: true, // 打包是否压缩代码
   },
 }
