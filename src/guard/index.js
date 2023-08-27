@@ -15,8 +15,8 @@ async function sign(fullUrl, cookie, ua) {
   getEncrypt(window)
 
   const data = {
-    cType: 'mti',
-    fpPlatform: 3,
+    cType: 'wx_wallet',
+    fpPlatform: 13,
     wxOpenId: '',
     appVersion: '',
     mtFingerprint: '', // 加密完成后赋值
