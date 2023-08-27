@@ -6,12 +6,11 @@ module.exports = {
   entry: './src/guard/index',
   target: 'node',
   output: {
-    filename: 'index.js',
+    filename: 'bundle_mt.js',
     path: path.resolve(__dirname, 'dist'),
     library: {
-      name: 'mtEncrypt',
-      type: 'umd',
-      umdNamedDefine: true,
+      // umd 时是对象
+      type: 'commonjs2',
     },
   },
   optimization: {
