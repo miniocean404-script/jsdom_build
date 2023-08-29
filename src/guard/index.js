@@ -30,7 +30,8 @@ async function sign(fullUrl, cookie, ua) {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      cookie,
+      'Content-Type': 'application/json',
+      'content-encoding': '',
     },
     data,
   })
