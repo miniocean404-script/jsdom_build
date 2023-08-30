@@ -2,7 +2,7 @@ const { initBrowserEnv } = require('../dom/jsdom')
 const getEncrypt = require('./encrypt/encrypt')
 
 async function sign(fullUrl, cookie, ua) {
-  const url = 'https://market.waimai.meituan.com'
+  const url = 'https://market.waimai.meituan.com/gd2/wm/4Hbymy?el_biz=waimai&'
   const referrer = 'https://passport.meituan.com/'
 
   const window = initBrowserEnv({

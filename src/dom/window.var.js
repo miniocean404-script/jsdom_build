@@ -13,13 +13,13 @@ const setWindowsVar = (window) => {
   window.innerHeight = 1056
   window.devicePixelRatio = 3
   window.length = 1
-  window.languages = ['zh-CN', 'zh']
-  window.language = 'zh-CN'
-  window.deviceMemory = 4
-  window.hardwareConcurrency = 8
-  window.platform = 'Linux aarch64'
-  window.maxTouchPoints = 5
-  window.vendor = 'Google Inc.'
+  window.navigator.languages = ['zh-CN', 'zh']
+  window.navigator.language = 'zh-CN'
+  window.navigator.deviceMemory = 4
+  window.navigator.hardwareConcurrency = 8
+  window.navigator.platform = 'Linux aarch64'
+  window.navigator.maxTouchPoints = 5
+  window.navigator.vendor = 'Google Inc.'
 
   Object.defineProperty(window.HTMLHtmlElement.prototype, 'clientWidth', {
     value: 720,
