@@ -4,6 +4,7 @@ const getEncrypt = (window) => {
   var innerWidth = 720
   var innerHeight = 1056
 
+
   !(function (factory) {
     'function' == typeof define && define.amd ? define(factory) : factory()
   })(function () {
@@ -8469,7 +8470,6 @@ const getEncrypt = (window) => {
             } catch (e) {
               return !0
             }
-            var min, max
           }
           var guardRaptor = {
               report: function (name, ncode, scode, dur, sample, key) {
@@ -9497,7 +9497,6 @@ const getEncrypt = (window) => {
                         ex ? ex['call'](this, ey, ez) : ez)
                   }),
                 )
-                var ex
               },
               parser: JSON,
             },
@@ -10328,7 +10327,6 @@ const getEncrypt = (window) => {
                 )
               })()
             )
-            var eC
           }
           function cj(eC) {
             return eC['reduce'](function (eD, eF) {
