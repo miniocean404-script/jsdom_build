@@ -31,6 +31,9 @@ devDependencies:
   node-loader:
     specifier: ^2.0.0
     version: 2.0.0(webpack@5.88.2)
+  terser-webpack-plugin:
+    specifier: ^5.3.9
+    version: 5.3.9(webpack@5.88.2)
   webpack:
     specifier: ^5.88.2
     version: 5.88.2(webpack-cli@5.1.4)
