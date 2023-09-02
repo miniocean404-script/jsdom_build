@@ -2,7 +2,7 @@ const { ScreenConfig } = require('jsdom-browser.screen')
 const XMLHttpRequest = require('xhr2')
 const { randomInt } = require('crypto')
 
-const setWindowsVar = (window) => {
+const setCommonWindowsVar = (window) => {
   window.XMLHttpRequest = XMLHttpRequest
   window.randomInt = randomInt
 
@@ -53,6 +53,6 @@ const setScreen = (window) => {
 }
 
 module.exports = {
-  setWindowsVar,
+  setCommonWindowsVar,
   setScreen,
 }

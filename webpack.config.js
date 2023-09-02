@@ -16,4 +16,13 @@ module.exports = {
   optimization: {
     minimize: true, // 打包是否压缩代码
   },
+  module: {
+    rules: [
+      {
+        // 处理 .node 文件
+        test: /\.node$/,
+        loader: 'node-loader',
+      },
+    ],
+  },
 }

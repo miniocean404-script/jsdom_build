@@ -1,23 +1,16 @@
 const Cookie = require('cookie')
-const { toughCookie } = require('jsdom')
 // const tough = require('tough-cookie')
 
 const getCookie = (dom) => dom.window.document.cookie
 
-const setCookieJar = (cookie, url) => {
-  const cookieJar = new toughCookie.CookieJar(null, {
-    allowSpecialUseDomain: true,
-  })
-
+const setCookieJar = (cookieJar,cookie, url) => {
   cookieJar.removeAllCookiesSync()
 
-  const cks = Cookie.parse(cookie)
+  const cks = Cookie.parse(cookie,{loose:true})
 
-  for (const k in cks) {
-    cookieJar.setCookie(`${k}=${cks[k]}`, url)
+  for (const [key,value] of Object.entries(cks)) {
+    cookieJar.setCookie(`${key}=${value}`, url)
   }
-
-  return cookieJar
 }
 
 module.exports = {

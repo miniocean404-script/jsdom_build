@@ -1,5 +1,5 @@
 const { initBrowserEnv } = require('../dom/jsdom')
-const getEncrypt = require('./encrypt/encrypt')
+const getEncrypt = require('./encrypt/encrypt_2.1.0')
 
 async function sign(fullUrl, cookie, ua) {
   const url = 'https://market.waimai.meituan.com/gd2/wm/4Hbymy?el_biz=waimai&'
