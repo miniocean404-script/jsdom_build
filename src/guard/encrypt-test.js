@@ -11,7 +11,7 @@ const fs = require('fs')
 
 // 写法二：适合 webpack 打包引入
 ;(async () => {
-  const sign = require('../dist/bundle_mt.js')
+  const sign = require('../../dist/bundle_mt.js')
   const h5guard = await sign('%s', '%s', '%s')
   console.log(h5guard)
 
