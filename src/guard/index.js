@@ -32,6 +32,7 @@ async function sign(fullUrl, cookie, ua) {
       'content-type': 'application/json',
       'Content-Type': 'application/json',
       'content-encoding': '',
+      cookie,
     },
     data,
   })
