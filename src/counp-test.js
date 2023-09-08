@@ -97,7 +97,6 @@ const init = async () => {
       headers: {
         Host: 'promotion.waimai.meituan.com',
         Connection: 'keep-alive',
-        // 'Content-Length': 2643,
         Accept: 'application/json, text/plain, */*',
         mtgsig: mtEncrypt.mtgsig,
         'User-Agent': WECHAT_UA,
