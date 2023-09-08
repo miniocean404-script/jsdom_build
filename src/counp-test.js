@@ -1,5 +1,5 @@
 const sign = require('./guard/index')
-const { WECHAT_UA_256 } = require('./ua')
+const { WECHAT_UA_256 } = require('./constant/ua')
 const { randomInt } = require('crypto')
 const { default: axios } = require('axios')
 
