@@ -1,4 +1,5 @@
 const sign = require('./guard/index')
+const H5 = require('./guard/bbbs/bbbs_2.1.0')
 const { WECHAT_UA_256 } = require('./constant/ua')
 const { randomInt } = require('crypto')
 const { default: axios } = require('axios')
@@ -22,16 +23,7 @@ const activity = {
 // }
 
 const cookie = [
-  // 失落
-  // 'token=AgFmJWaaSXvHa1fkc11AsUqmmvzJnpo8OCW1owD4yNHu6SXauYX08WZq2sUsROjy0cb1NvxpdN02oQAAAACvGgAA6ikd2eMGFjSfUhJEAhqUTAXyO59Xm9z9kBKy6dGcPveNda6_ZTRQa94W59ah34w1',
-  // 吊毛
-  // 'token=AgHSIWcdU_uMqSTJNHHI6kpqc_Quf949bjnR3xiFAVLDYk5fPvQDQ9gt9bbGW8Qge5GBM12qd7Mv9gAAAACvGgAAW6KMfm_96559bxgi8WPyQjS7B9COrM9tJPBhjkC0THl0XiJJtn46tGZAGbPpWAFC',
-  // AS
-  'token=AgFeIrYHkp7fMTRPE9-GVDMKi3r9SBZb4es_RGs4kUlAU0xIqZgkXR7NY8a9Hk8Mzr7YlJq-4LUDkQAAAACPGgAA0ewEOU2e-E3PpZzLIBRwTYRfwm1mIYOIp4hemBf4jzTMrj4BNShqrMdu8eznI0pN',
-  // 炮王
-  // 'token=AgGiITbBdrYDo_cKT9C3DYjoLBMzSLj48hgI1LF08FdlDtgAsgEkcWMTGMyG5qUlJeTVpK_JTZ5S2gAAAACPGgAAyho3KMx-ClpU1DWbKLIURuRR7LeWCkszRNLKx1_gKpcDTXqICmKrctI0VXPg1NvQ',
-  // insist
-  // 'token=AgGFHa1qYjrGino1OqjlxZidL2KioRnWkuyXJHETlDB1RPeN9kmA2IdLeyAPaDfyDPSiBe4K32MpUgAAAACvGgAAnu5jDmmALx-HRUf3O2lt3LwvdJctRxF0F3SAu1T6WJKTHBGZEWTb3As3WlN0eSFg',
+  '_lxsdk_s=18a787f3795-e2f-bd-131%7C%7C19; WEBDFPID=u19wu11u1yvx59x6y11uww8v799y661381z22zv64219795832u1xw25-2009585020152-1694225020152EMOWIQS868c0ee73ab28e1d0b03bc83148500069079; logan_session_token=b9wyuebyi9hd2y8q6jk0; isid=AgGRJE4C8XaGbnLixHJO5NFH47MNNQ4GOZww6tu252RWfvyxFqUqI3NBs3tivz5i7hrJ0tZDVsSGFAAAAACPGgAAsRJ4LNzS0V1zq6Vc4heQtSPIxMOrGSWL5OA5Yrgk6lvwkTh-eCLSTfKLw6XhO-Gv; iuuid=18a77ae1a99c8-0e8a043f014d1a-2a6d4c36-60c28-18a77ae1a99c8; mt_c_token=AgGRJE4C8XaGbnLixHJO5NFH47MNNQ4GOZww6tu252RWfvyxFqUqI3NBs3tivz5i7hrJ0tZDVsSGFAAAAACPGgAAsRJ4LNzS0V1zq6Vc4heQtSPIxMOrGSWL5OA5Yrgk6lvwkTh-eCLSTfKLw6XhO-Gv; oops=AgGRJE4C8XaGbnLixHJO5NFH47MNNQ4GOZww6tu252RWfvyxFqUqI3NBs3tivz5i7hrJ0tZDVsSGFAAAAACPGgAAsRJ4LNzS0V1zq6Vc4heQtSPIxMOrGSWL5OA5Yrgk6lvwkTh-eCLSTfKLw6XhO-Gv; token=AgGRJE4C8XaGbnLixHJO5NFH47MNNQ4GOZww6tu252RWfvyxFqUqI3NBs3tivz5i7hrJ0tZDVsSGFAAAAACPGgAAsRJ4LNzS0V1zq6Vc4heQtSPIxMOrGSWL5OA5Yrgk6lvwkTh-eCLSTfKLw6XhO-Gv; u=3057000549; userId=3057000549; isUuidUnion=true; _lx_utm=utm_source%3Dwxshare%26utm_term%3D512946; ta.uuid=1700329079716765702; _lxsdk=18a77ae1a99c8-0e8a043f014d1a-2a6d4c36-60c28-18a77ae1a99c8; _lxsdk_cuid=18a77ae1a99c8-0e8a043f014d1a-2a6d4c36-60c28-18a77ae1a99c8',
 ]
 
 const init = async () => {
@@ -77,7 +69,7 @@ const init = async () => {
     try {
       // 解决时间戳验证失败的问题
       const res = await axios.get(loginUrl.href, { headers: { Cookie: ck, 'User-Agent': WECHAT_UA } })
-      console.log(res.data)
+      console.log(res.data.data)
     } catch (e) {
       console.log(e)
     }
@@ -90,6 +82,8 @@ const init = async () => {
       wxOpenId: '',
     }
 
+    // const h5guard = new H5(ck, WECHAT_UA)
+    // const mtEncrypt = await h5guard.sign(fullUrl, data)
     const mtEncrypt = await sign(fullUrl.href, ck, WECHAT_UA, data)
     data.mtFingerprint = mtEncrypt.mtFingerprint
 
