@@ -6,27 +6,32 @@ const setCommonWindowsVar = (window) => {
   window.XMLHttpRequest = XMLHttpRequest
   window.randomInt = randomInt
 
-  window.setTimeout = (...arg) => arg[0]()
-  window.setInterval = (...arg) => arg[0]()
-
-  window.innerWidth = 720
-  window.innerHeight = 1056
-  window.devicePixelRatio = 3
-  window.length = 1
-  window.navigator.languages = ['zh-CN', 'zh']
-  window.navigator.language = 'zh-CN'
-  window.navigator.deviceMemory = 4
-  window.navigator.hardwareConcurrency = 8
-  window.navigator.platform = 'Linux aarch64'
-  window.navigator.maxTouchPoints = 5
-  window.navigator.vendor = 'Google Inc.'
-
-  Object.defineProperty(window.HTMLHtmlElement.prototype, 'clientWidth', {
-    value: 720,
+  Object.defineProperty(window, 'setTimeout', {
+    value: function () {
+      arguments[0]()
+    },
   })
-  Object.defineProperty(window.HTMLHtmlElement.prototype, 'clientHeight', {
-    value: 1056,
+  Object.defineProperty(window, 'setInterval', {
+    value: function () {
+      arguments[0]()
+    },
   })
+  Object.defineProperty(window, 'setCookie', { value: this.setCookie })
+  Object.defineProperty(window, 'cookieJar', { value: this.dom.cookieJar })
+  Object.defineProperty(window, 'baseUrl', { value: this.baseUrl })
+  Object.defineProperty(window.HTMLHtmlElement.prototype, 'clientWidth', { value: 720 })
+  Object.defineProperty(window.HTMLHtmlElement.prototype, 'clientHeight', { value: 1056 })
+  Object.defineProperty(window, 'innerWidth', { value: 720 })
+  Object.defineProperty(window, 'innerHeight', { value: 1056 })
+  Object.defineProperty(window, 'devicePixelRatio', { value: 3 })
+  Object.defineProperty(window, 'length', { value: 1 })
+  Object.defineProperty(navigator, 'languages', { value: ['zh-CN', 'zh'] })
+  Object.defineProperty(navigator, 'language', { value: 'zh-CN' })
+  Object.defineProperty(navigator, 'deviceMemory', { value: 4 })
+  Object.defineProperty(navigator, 'hardwareConcurrency', { value: 8 })
+  Object.defineProperty(navigator, 'platform', { value: 'Linux aarch64' })
+  Object.defineProperty(navigator, 'maxTouchPoints', { value: 5 })
+  Object.defineProperty(navigator, 'vendor', { value: 'Google Inc.' })
 
   // Object.defineProperty(window, 'xx', { value: 'xx' })
 }
