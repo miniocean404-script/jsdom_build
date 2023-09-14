@@ -1,14 +1,11 @@
 // https://juejin.cn/post/7151065517569081380#heading-2
 
 const jsdom = require('jsdom')
-const { setCommonWindowsVar, setScreen} = require('./window.var')
+const { setCommonWindowsVar, setScreen } = require('./window.var')
 const { setCookieJar } = require('./cookie')
-const {toughCookie} = require("jsdom");
+const { toughCookie } = require('jsdom')
 
 const { JSDOM, ResourceLoader, VirtualConsole } = jsdom
-
-const defaultUa =
-  'Mozilla/5.0 (Linux; Android 9; MI 6 Build/PKQ1.190118.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/107.0.5304.141 Mobile Safari/537.36 XWEB/5075 MMWEBSDK/20230504 MMWEBID/5707 MicroMessenger/8.0.37.2380(0x28002598) WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64'
 
 const initBrowserEnv = ({ url, referrer, cookie, ua }) => {
   const origin = new URL(url).origin
@@ -16,14 +13,9 @@ const initBrowserEnv = ({ url, referrer, cookie, ua }) => {
   const vConsole = new VirtualConsole()
   vConsole.sendTo(console, { omitJSDOMErrors: false })
 
-  const cookieJar = new toughCookie.CookieJar(null, {
-    allowSpecialUseDomain: true,
-  })
-  setCookieJar(cookieJar,cookie,origin)
-
-  const resourceLoader = new ResourceLoader({
-    userAgent: ua || defaultUa,
-  })
+  const cookieJar = new toughCookie.CookieJar(null, { allowSpecialUseDomain: true })
+  setCookieJar(cookieJar, cookie, origin)
+  const resourceLoader = new ResourceLoader({ userAgent: ua })
 
   const dom = new JSDOM('', {
     // 创建 Window 和 Document 对象之后，但在解析任何 HTML 并使用节点填充文档之前
