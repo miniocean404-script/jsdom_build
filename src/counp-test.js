@@ -71,10 +71,11 @@ const init = async () => {
     const infoRes = await axios.get(loginUrl.href, { headers: { Cookie: ck, 'User-Agent': WECHAT_UA } })
     console.log(infoRes.data.data)
 
+    // prettier-ignore
     const data = {
       appVersion: '',
       cType: 'wx_wallet',
-      fpPlatform: 13,
+      fpPlatform: "13",
       mtFingerprint: '', // 加密完成后赋值
       wxOpenId: '',
     }
@@ -82,8 +83,6 @@ const init = async () => {
     // const mtEncrypt = await h5guard.sign(fullUrl.href, data)
     const mtEncrypt = await sign(fullUrl.href, ck, WECHAT_UA, data)
     data.mtFingerprint = mtEncrypt.mtFingerprint
-
-    console.log(mtEncrypt)
 
     const res = await axios.post(fullUrl.href, data, {
       headers: {
