@@ -8242,7 +8242,6 @@ class H5guard {
               } catch (e) {
                 return !0
               }
-              var min, max
             }
             var guardRaptor = {
                 report: function () {},
@@ -8939,7 +8938,6 @@ class H5guard {
                         : ('' === fJ && (fK = ax(fK, fK, {})), fL && (fK = fK['replace'](am, '$1' + ah)['replace'](aj, ai)), fI ? fI['call'](this, fJ, fK) : fK)
                     }),
                   )
-                  var fI
                 },
                 parser: JSON,
               },
@@ -10038,7 +10036,6 @@ class H5guard {
                   return cz([['DOMRectList'] in fP, ['RTCPeerConnectionIceEvent'] in fP, ['SVGGeometryElement'] in fP, ['ontransitioncancel'] in fP]) >= 3
                 })()
               )
-              var fP
             }
             function cz(fP) {
               return fP['reduce'](function (fQ, fR) {
@@ -13836,8 +13833,11 @@ class H5guard {
       },
       data: data,
     }
-    req = await this.dom.window.H5guard.sign(req)
-    return req
+    const encrypy = await this.dom.window.H5guard.sign(req)
+    return {
+      mtFingerprint: data.mtFingerprint,
+      mtgsig: encrypy.headers.mtgsig,
+    }
   }
 }
 

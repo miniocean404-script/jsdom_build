@@ -1,17 +1,8 @@
 const sign = require('./guard/index')
-const H5 = require('./guard/bbbs/bbbs_2.1.0')
+const H5 = require('./guard/bbbs/bbbs_2.0.0')
 const { WECHAT_UA_256 } = require('./constant/ua')
 const { randomInt } = require('crypto')
 const { default: axios } = require('axios')
-
-const activity = {
-  couponReferId: '19C78038548E493A85851B16A5C17D8B',
-  gdPageId: '379378',
-  pageId: '378912',
-  instanceId: '16618587892630.83610444655074820',
-  desc: '膨胀神券 社群专享30-6',
-  url: 'https://promotion.waimai.meituan.com/lottery/limitcouponcomponent/fetchcoupon',
-}
 
 // const activity = {
 //   couponReferId: 'BEA9D26AEBD64F9A9680FE390A05654B',
@@ -22,21 +13,31 @@ const activity = {
 //   url: 'https://promotion.waimai.meituan.com/lottery/limitcouponcomponent/fetchcoupon',
 // }
 
-const cookie = [
-  '_lxsdk_s=18a787f3795-e2f-bd-131%7C%7C19; WEBDFPID=u19wu11u1yvx59x6y11uww8v799y661381z22zv64219795832u1xw25-2009585020152-1694225020152EMOWIQS868c0ee73ab28e1d0b03bc83148500069079; logan_session_token=b9wyuebyi9hd2y8q6jk0; isid=AgGRJE4C8XaGbnLixHJO5NFH47MNNQ4GOZww6tu252RWfvyxFqUqI3NBs3tivz5i7hrJ0tZDVsSGFAAAAACPGgAAsRJ4LNzS0V1zq6Vc4heQtSPIxMOrGSWL5OA5Yrgk6lvwkTh-eCLSTfKLw6XhO-Gv; iuuid=18a77ae1a99c8-0e8a043f014d1a-2a6d4c36-60c28-18a77ae1a99c8; mt_c_token=AgGRJE4C8XaGbnLixHJO5NFH47MNNQ4GOZww6tu252RWfvyxFqUqI3NBs3tivz5i7hrJ0tZDVsSGFAAAAACPGgAAsRJ4LNzS0V1zq6Vc4heQtSPIxMOrGSWL5OA5Yrgk6lvwkTh-eCLSTfKLw6XhO-Gv; oops=AgGRJE4C8XaGbnLixHJO5NFH47MNNQ4GOZww6tu252RWfvyxFqUqI3NBs3tivz5i7hrJ0tZDVsSGFAAAAACPGgAAsRJ4LNzS0V1zq6Vc4heQtSPIxMOrGSWL5OA5Yrgk6lvwkTh-eCLSTfKLw6XhO-Gv; token=AgGRJE4C8XaGbnLixHJO5NFH47MNNQ4GOZww6tu252RWfvyxFqUqI3NBs3tivz5i7hrJ0tZDVsSGFAAAAACPGgAAsRJ4LNzS0V1zq6Vc4heQtSPIxMOrGSWL5OA5Yrgk6lvwkTh-eCLSTfKLw6XhO-Gv; u=3057000549; userId=3057000549; isUuidUnion=true; _lx_utm=utm_source%3Dwxshare%26utm_term%3D512946; ta.uuid=1700329079716765702; _lxsdk=18a77ae1a99c8-0e8a043f014d1a-2a6d4c36-60c28-18a77ae1a99c8; _lxsdk_cuid=18a77ae1a99c8-0e8a043f014d1a-2a6d4c36-60c28-18a77ae1a99c8',
-]
+const activity = {
+  couponReferId: '19C78038548E493A85851B16A5C17D8B',
+  gdPageId: '379378',
+  pageId: '378912',
+  instanceId: '16618587892630.83610444655074820',
+  desc: '膨胀神券 社群专享30-6',
+  url: 'https://promotion.waimai.meituan.com/lottery/limitcouponcomponent/fetchcoupon',
+}
 
 const init = async () => {
+  const cookie = [
+    '_lxsdk_cuid=189cfb9fc29c8-05834987975d4e-82a0e09-5c094-189cfb9fc2945; WEBDFPID=772x3z19y0w657w1zy189z67u657wy93810xuyz9v6097958w9y0v19z-2006767223700-1691407220159QOMUAYSe67dcc3e61b3db1bf3f9e3b1c7aaaa883144; historycityinfo=@45%2C%E9%87%8D%E5%BA%86%2Cchongqing; ci=45; cityname=%E9%87%8D%E5%BA%86; pinyin=chongqing; iuuid=76DB134FF2B35A63DC979B756A12F19BA6C22B4EFC072BD6B734487A75A4FDB4; _lxsdk=76DB134FF2B35A63DC979B756A12F19BA6C22B4EFC072BD6B734487A75A4FDB4; latlng=23.136244%2C113.3649; ci3=20; token=AgFLIQGMErHcGaCQjnGaKZZCBi9UlerGjg9fWSKKZOpC27zX8BZSO2Nx2kkBEJh2YYUK9HWoUFyqXQAAAADdGgAAMYXpQMXOEx6Bagbo0l1OxPA4rtBWlBn8G2B7TRMjb6DkfQnAPRpvYvpxcvDB9I6w; mt_c_token=AgFLIQGMErHcGaCQjnGaKZZCBi9UlerGjg9fWSKKZOpC27zX8BZSO2Nx2kkBEJh2YYUK9HWoUFyqXQAAAADdGgAAMYXpQMXOEx6Bagbo0l1OxPA4rtBWlBn8G2B7TRMjb6DkfQnAPRpvYvpxcvDB9I6w; oops=AgFLIQGMErHcGaCQjnGaKZZCBi9UlerGjg9fWSKKZOpC27zX8BZSO2Nx2kkBEJh2YYUK9HWoUFyqXQAAAADdGgAAMYXpQMXOEx6Bagbo0l1OxPA4rtBWlBn8G2B7TRMjb6DkfQnAPRpvYvpxcvDB9I6w; userId=2752263498; u=2752263498; isid=AgFLIQGMErHcGaCQjnGaKZZCBi9UlerGjg9fWSKKZOpC27zX8BZSO2Nx2kkBEJh2YYUK9HWoUFyqXQAAAADdGgAAMYXpQMXOEx6Bagbo0l1OxPA4rtBWlBn8G2B7TRMjb6DkfQnAPRpvYvpxcvDB9I6w; logan_session_token=er8mp150jpiofnxylls2; _lxsdk_s=18a9443b0a6-252-ce-21e%7C%7C131',
+  ]
+  const WECHAT_UA =
+    'Mozilla/5.0 (Linux; Android 13; 22081212C Build/TKQ1.220829.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/111.0.5563.116 Mobile Safari/537.36 XWEB/5235 MMWEBSDK/20230805 MMWEBID/9366 MicroMessenger/8.0.41.2441(0x2800293E) WeChat/arm64 Weixin NetType/5G Language/zh_CN ABI/arm64'
+
   const { couponReferId, gdPageId, pageId, instanceId, url } = activity
-  const WECHAT_UA = WECHAT_UA_256[randomInt(WECHAT_UA_256.length - 1)]
 
   // 提前计算签名
   const fullUrl = new URL(url)
 
   const fiexd = {
     couponReferId: couponReferId,
-    actualLng: '116.29122',
-    actualLat: '39.857674',
+    actualLng: 0,
+    actualLat: 0,
     geoType: 2,
     gdPageId: gdPageId,
     pageId: pageId,
@@ -61,18 +62,14 @@ const init = async () => {
 
   cookie.forEach(async (ck) => {
     const loginUrl = new URL('https://promotion.waimai.meituan.com/lottery/limitcouponcomponent/info')
-    loginUrl.searchParams.set('couponReferIds', couponReferId)
-    loginUrl.searchParams.set('actualLng', 116.29122)
-    loginUrl.searchParams.set('actualLat', 39.857674)
-    loginUrl.searchParams.set('geoType', 2)
+    loginUrl.searchParams.set('couponReferIds', fiexd.couponReferId)
+    loginUrl.searchParams.set('actualLng', fiexd.actualLng)
+    loginUrl.searchParams.set('actualLat', fiexd.actualLat)
+    loginUrl.searchParams.set('geoType', fiexd.geoType)
 
-    try {
-      // 解决时间戳验证失败的问题
-      const res = await axios.get(loginUrl.href, { headers: { Cookie: ck, 'User-Agent': WECHAT_UA } })
-      console.log(res.data.data)
-    } catch (e) {
-      console.log(e)
-    }
+    // 解决时间戳验证失败的问题
+    const infoRes = await axios.get(loginUrl.href, { headers: { Cookie: ck, 'User-Agent': WECHAT_UA } })
+    console.log(infoRes.data.data)
 
     const data = {
       appVersion: '',
@@ -81,11 +78,12 @@ const init = async () => {
       mtFingerprint: '', // 加密完成后赋值
       wxOpenId: '',
     }
-
     // const h5guard = new H5(ck, WECHAT_UA)
-    // const mtEncrypt = await h5guard.sign(fullUrl, data)
+    // const mtEncrypt = await h5guard.sign(fullUrl.href, data)
     const mtEncrypt = await sign(fullUrl.href, ck, WECHAT_UA, data)
     data.mtFingerprint = mtEncrypt.mtFingerprint
+
+    console.log(mtEncrypt)
 
     const res = await axios.post(fullUrl.href, data, {
       headers: {
@@ -106,7 +104,6 @@ const init = async () => {
         Cookie: ck,
       },
     })
-
     console.log(res.data)
   })
 }
