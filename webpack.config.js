@@ -4,7 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
   mode: 'production',
-  entry: './src/guard/index',
+  entry: './src/guard/bbbs/bbbs_2.1.0.js',
   target: 'node',
   output: {
     filename: 'bundle_mt.js',

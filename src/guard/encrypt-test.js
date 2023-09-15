@@ -11,16 +11,27 @@ const fs = require('fs')
 
 // 写法二：适合 webpack 打包引入
 ;(async () => {
-  const sign = require('../../dist/bundle_mt.js')
+  // const sign = require('../../dist/bundle_mt.js')
   // const sign = require('./index')
-  const h5guard = await sign('%s', '%s', '%s', {
+  // const h5guard = await sign('%s', '%s', '%s', {
+  //   appVersion: '',
+  //   cType: 'wx_wallet',
+  //   fpPlatform: 13,
+  //   mtFingerprint: '', // 加密完成后赋值
+  //   wxOpenId: '',
+  // })
+
+  const H5 = require('../../dist/bundle_mt.js')
+  const guard = new H5('cookie', 'ua')
+  const res = await guard.sign('url', {
     appVersion: '',
     cType: 'wx_wallet',
     fpPlatform: 13,
     mtFingerprint: '', // 加密完成后赋值
     wxOpenId: '',
   })
-  console.log(h5guard)
+
+  console.log(res)
 
   process.exit(0)
 })()
